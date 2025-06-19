@@ -4,25 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anniversary Access</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Anniversary Celebration</h1>
-    <p>Please enter the access code to continue.</p>
-    <input type="password" id="code-input" placeholder="Access code" />
-    <button onclick="checkCode()">Enter</button>
-    <p id="error" class="error"></p>
-
+<body class="bg-gray-100">
+    <div id="root"></div>
     <script>
-    function checkCode() {
-        var code = document.getElementById('code-input').value.trim();
-        if (code === '0425') {
-            localStorage.setItem('unlocked', 'true');
-            window.location.href = 'letter.html';
-        } else {
-            document.getElementById('error').textContent = 'Incorrect code. Please try again.';
-        }
+    const { useState } = React;
+    function App() {
+        const [code, setCode] = useState('');
+        const [error, setError] = useState('');
+        const handleSubmit = () => {
+            if (code === '0425') {
+                localStorage.setItem('unlocked', 'true');
+                window.location.href = 'letter.html';
+            } else {
+                setError('Incorrect code. Please try again.');
+            }
+        };
+        return (
+            React.createElement('div', { className: 'p-8 text-center' },
+                React.createElement('h1', { className: 'text-3xl font-bold mb-4' }, 'Anniversary Celebration'),
+                React.createElement('input', {
+                    type: 'password',
+                    placeholder: 'Access code',
+                    value: code,
+                    onChange: e => setCode(e.target.value),
+                    className: 'border p-2 mr-2'
+                }),
+                React.createElement('button', { onClick: handleSubmit, className: 'bg-blue-500 text-white p-2 rounded' }, 'Enter'),
+                error && React.createElement('p', { className: 'text-red-500 mt-2' }, error)
+            )
+        );
     }
+    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
     </script>
 </body>
 </html>
