@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div id="app" class="p-8 text-center"></div>
+    <script>
+    const { createApp } = Vue;
+    const photos = [
+        { src: 'https://via.placeholder.com/400x300?text=Photo+1', caption: 'When we first met' },
+        { src: 'https://via.placeholder.com/400x300?text=Photo+2', caption: 'A day to remember' },
+        { src: 'https://via.placeholder.com/400x300?text=Photo+3', caption: 'Growing together' }
+    ];
+    createApp({
+        data() {
+            return { index: 0 };
+        },
+        mounted() {
+            setInterval(() => {
+                this.index = (this.index + 1) % photos.length;
+            }, 3000);
+        },
+        computed: {
+            photo() {
+                return photos[this.index];
+            }
+        },
+        template: `
+            <div>
+                <h1 class="text-3xl font-bold mb-4">Our Journey</h1>
+                <img :src="photo.src" alt="Photo" class="mx-auto mb-2">
+                <p>{{ photo.caption }}</p>
+            </div>
+        `
+    }).mount('#app');
+    </script>
+</body>
+</html>

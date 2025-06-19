@@ -1,18 +1,15 @@
 # Anniversary
 
-This repository contains a small static website in the `site/` folder. The site is built with **React** and **Tailwind CSS** delivered via CDN links so no build step is required.
-
-The site celebrates an anniversary and requires an access code to view the content beyond the landing page.
+This project uses **FastAPI** for the backend and **Vue 3** with **Tailwind CSS** on the frontend. It shows an anniversary letter and a small photo slideshow that are protected by an access code.
 
 ## Usage
 
-Open `site/index.html` in your web browser. Enter the access code `0425` when prompted to read the anniversary letter and view the photo slideshow.
-
-You can also serve the files locally with Python:
-
-```bash
-cd site
-python3 -m http.server 8000
-```
-
-Then visit [http://localhost:8000](http://localhost:8000) in your browser.
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the server:
+   ```bash
+   uvicorn main:app --reload
+   ```
+3. Open [http://localhost:8000](http://localhost:8000) in your browser and enter the access code `0425` to view the content.
