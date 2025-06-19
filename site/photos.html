@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+    if (localStorage.getItem('unlocked') !== 'true') {
+        window.location.href = 'index.html';
+    }
+    </script>
+</head>
+<body>
+    <h1>Our Journey</h1>
+    <img id="photo" src="" alt="Photo" />
+    <p id="caption"></p>
+
+    <script>
+    const photos = [
+        { src: 'https://via.placeholder.com/400x300?text=Photo+1', caption: 'When we first met' },
+        { src: 'https://via.placeholder.com/400x300?text=Photo+2', caption: 'A day to remember' },
+        { src: 'https://via.placeholder.com/400x300?text=Photo+3', caption: 'Growing together' }
+    ];
+    let idx = 0;
+    function showNext() {
+        const p = photos[idx];
+        document.getElementById('photo').src = p.src;
+        document.getElementById('caption').textContent = p.caption;
+        idx = (idx + 1) % photos.length;
+    }
+    window.onload = function() {
+        showNext();
+        setInterval(showNext, 3000);
+    };
+    </script>
+</body>
+</html>

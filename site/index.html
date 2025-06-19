@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Anniversary Access</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the Anniversary Site!</h1>
-    <p>We're glad you're here.</p>
+    <h1>Anniversary Celebration</h1>
+    <p>Please enter the access code to continue.</p>
+    <input type="password" id="code-input" placeholder="Access code" />
+    <button onclick="checkCode()">Enter</button>
+    <p id="error" class="error"></p>
+
+    <script>
+    function checkCode() {
+        var code = document.getElementById('code-input').value.trim();
+        if (code === '0425') {
+            localStorage.setItem('unlocked', 'true');
+            window.location.href = 'letter.html';
+        } else {
+            document.getElementById('error').textContent = 'Incorrect code. Please try again.';
+        }
+    }
+    </script>
 </body>
 </html>

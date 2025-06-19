@@ -1,10 +1,15 @@
 # Anniversary
 
-This repository includes a small static site located in the `site/` folder.
+This repository contains a small static website found in the `site/` folder.
+The site celebrates an anniversary and requires an access code to view the
+content beyond the landing page.
 
 ## Usage
 
-Open `site/index.html` in your favorite web browser to view the welcome page. Alternatively, launch a local server from the `site/` directory:
+Open `site/index.html` in your web browser. Enter the access code `0425`
+when prompted to read the anniversary letter and view the photo slideshow.
+
+You can also serve the files locally with Python:
 
 ```bash
 cd site
